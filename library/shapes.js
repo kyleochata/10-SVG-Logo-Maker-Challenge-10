@@ -87,7 +87,8 @@ class Triangle extends Shape {
     super(text, textColor, triangle, shapeColor);
   }
   render() {
-    return `${this.svgOpenTag}
+    return `
+    ${this.svgOpenTag}
 
     <polygon points="150, 15 300, 175 15, 175"  fill="${this.shapeColor}" />
 
@@ -106,7 +107,7 @@ class Square extends Shape {
     ${this.svgOpenTag}
 
     <rect x="45" width="200" height="200" fill="${this.shapeColor}" />
-  
+
     <text x="150" y="115" font-size="60" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
 
     ${this.svgCloseTag}`
