@@ -9,53 +9,55 @@ const hexArr = require('./hex-key');
 class Shape {
   constructor (text, textColor, shape, shapeColor) {
 
+    //set text if text input is less than 3 char
     if(text.length <= 3){
-      return this.text = text;
+      this.text = text;
     } else {
       console.log(`You may only input 3 characters or less for your logo. Please try again.`);
     };
+
+    //handle and set textColor
   let tColor = textColor.toLowerCase().trim();
     if (tColor === '') {
       console.log(`You must enter a valid color. Please try again.`)
     } else {
       if(tColor[0] === `#` && tColor.length === 7) {
         if (hexArr.includes(tColor)) {
-          return this.textColor = tColor;
+          this.textColor = tColor;
         } else {
           console.log(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
         }
       }
       if (colorArr.includes(tColor)) {
-        return this.textColor = tColor;
+        this.textColor = tColor;
       } else {
         console.log(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
       }
     };
-
+    //set shape property
     this.shape = shape;
 
+//handle and set shapeColor based on user input
   let sColor = shapeColor.toLowerCase().trim();
   if (sColor === '') {
     console.log(`You must enter a valid color. Please try again.`)
   } else {
     if(sColor[0] === `#` && sColor.length === 7) {
       if (hexArr.includes(sColor)) {
-        return this.textColor = sColor;
+        this.shapeColor = sColor;
       } else {
         console.log(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
       }
     }
     if (colorArr.includes(sColor)) {
-      return this.textColor = sColor;
+      this.shapeColor = sColor;
     } else {
       console.log(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
     }
   };
-
-    this.svgOpenTag = `<svg version="1.1"
-    width="300" height="200"
-    xmlns="http://www.w3.org/2000/svg">`;
-    this.elementTextTag = `<text x='150' y='125' font-size='60' text-anchor='middle' fill='${this.textColor}'>${this.text}</text>`;
+//create props with constant values needed for all shapes in rendering the svg file
+    this.svgOpenTag = `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">`;
+    this.elementTextTag = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.textColor}">${this.text}</text>`;
     this.svgCloseTag = `</svg>`;
 };
 }
@@ -67,8 +69,11 @@ class Circle extends Shape {
   render() {
     return `
     ${this.svgOpenTag}
-    <${this.shape} cs='150' cy='100' r='100' fill='${this.shapeColor}' />
+
+    <${this.shape} cs="150" cy="100" r="80" fill="${this.shapeColor}" />
+
     ${this.elementTextTag}
+
     ${this.svgCloseTag}`
   }
 }
@@ -81,8 +86,11 @@ class Triangle extends Shape {
   render() {
     return `
     ${this.svgOpenTag}
-    <polygon points='100, 15 200, 200 0, 200'  fill='${this.shapeColor}' />
+
+    <polygon points="100, 15 200, 200 0, 200"  fill="${this.shapeColor}" />
+
     ${this.elementTextTag}
+
     ${this.svgCloseTag}`
   }
 }
@@ -94,8 +102,11 @@ class Square extends Shape {
   render() {
     return `
     ${this.svgOpenTag}
-    <rect  width='200' height='200' fill='${this.shapeColor}' />
+
+    <rect  width="200" height="200" fill="${this.shapeColor}" />
+  
     ${this.elementTextTag}
+
     ${this.svgCloseTag}`
   }
 }
@@ -117,5 +128,6 @@ const makeLogo = (response) => {
     return newSquare.render();
   }
 }
+
 
 module.exports = makeLogo;
