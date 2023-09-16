@@ -105,7 +105,7 @@ class Square extends Shape {
     return `
     ${this.svgOpenTag}
 
-    <rect  x="45" width="200" height="200" fill="${this.shapeColor}" />
+    <rect x="45" width="200" height="200" fill="${this.shapeColor}" />
   
     <text x="150" y="115" font-size="60" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
 
@@ -132,8 +132,9 @@ const makeLogo = (response) => {
 }
 
 
-module.exports = makeLogo;
 module.exports = Shape;
 module.exports = Circle;
 module.exports = Triangle;
 module.exports = Square;
+
+module.exports = makeLogo;
