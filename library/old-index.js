@@ -45,31 +45,13 @@ const questions = [
 },
 ];
 
-//Write to file fxn checks. Won't allow a file to be written if object from makeLogo has props with undefined values.
-const writeFileFxn = (handledR) => {
-  const { text, textColor, shapeColor } = handledR;
-  if(text === undefined) {
-    console.log(`Please ensure that your text is less than or equal to 3 characters long and try again.`);
-    return;
-  } else if (textColor === undefined) {
-    console.log(`Please check the text color you have chosen matches the W3Schools CSS colors page and try again.`);
-    return;
-  } else if (shapeColor === undefined) {
-    console.log(`Please check the text color you have chosen matches the W3Schools CSS colors page and try again.`);
-    return;
-  } else {
-    const render = handledR.render()
-    fs.writeFile(filePnN, render, () => {
-      console.log(`logo.svg created! Check it out in the "examples" folder`)
-    })
-  }
-}
-
 //create a function to write a logo.svg file
 const createLogo = (response) => {
   const handleResponse = makeLogo(response);
-  writeFileFxn(handleResponse);
-  }
+  fs.writeFile(filePnN, handleResponse, () => {
+    console.log(`logo.svg created! Check it out in the "examples" folder`)
+  })
+}
 //create a function initialize the app
 function init() {
   inquirer
@@ -82,5 +64,3 @@ function init() {
     })
 }
 init();
-
-
