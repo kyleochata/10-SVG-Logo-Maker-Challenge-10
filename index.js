@@ -13,7 +13,7 @@ need fs to writetofile named 'logo.svg'
 */
 const inquirer = require('inquirer');
 const fs = require('fs');
-const makeLogo = require('./library/shapes')
+const { makeLogo } = require('./library/shapes')
 const filePnN = `./examples/logo.svg`;
 const questions = [
   {

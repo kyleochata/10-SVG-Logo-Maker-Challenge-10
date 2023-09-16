@@ -131,10 +131,6 @@ const makeLogo = (response) => {
   }
 }
 
+module.exports = { makeLogo, Shape, Circle, Triangle, Square };
 
-module.exports = Shape;
-module.exports = Circle;
-module.exports = Triangle;
-module.exports = Square;
 
-module.exports = makeLogo;

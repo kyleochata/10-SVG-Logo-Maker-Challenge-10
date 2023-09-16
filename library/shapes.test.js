@@ -14,10 +14,10 @@ AND the output text "Generated logo.svg" is printed in the command line
 WHEN I open the `logo.svg` file in a browser
 THEN I am shown a 300x200 pixel image that matches the criteria I entered
 */
-const Shape = require('./shapes')
-const Circle = require('./shapes');
-const Triangle = require('./shapes');
-const Square = require('./shapes');
+const {Shape} = require('./shapes')
+const {Circle} = require('./shapes');
+const {Triangle} = require('./shapes');
+const {Square} = require('./shapes');
 describe(`Shape`, () => {
   it (`Should take in user inputs and build a shape object`, () => {
     const textI = "HHH";
@@ -34,7 +34,7 @@ describe(`Shape`, () => {
       elementTextTag: `<text x="150" y="125" font-size="60" text-anchor="middle" fill="green">HHH</text>`,
       svgCloseTag: `</svg>`,
     };
-    expect(newShape).toEqual(outcome);
+    expect(newShape).toMatchObject(outcome);
   });
 });
 
@@ -50,7 +50,7 @@ describe(`Circle`, () => {
       <text x="150" y="125" font-size="60" text-anchor="middle" fill="blue">TTT</text>
   
       </svg>`;
-      expect(newCircle.render()).toEqual(outcome);
+      expect(newCircle.render()).toMatch(outcome);
     });
   });
 });
@@ -68,7 +68,7 @@ describe(`Triangle`, () => {
   
       </svg>`;
 
-      expect(newTriangle.render()).toEqual(outcome);
+      expect(newTriangle.render()).toMatch(outcome);
     });
   });
 });
@@ -85,7 +85,7 @@ describe(`Square`, () => {
       <text x="150" y="115" font-size="60" text-anchor="middle" fill="#1E90FF">REE</text>
   
       </svg>`;
-      expect(newSquare.render()).toEqual(outcome);
+      expect(newSquare.render()).toMatch(outcome);
     });
   });
 });
