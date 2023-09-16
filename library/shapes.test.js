@@ -16,13 +16,8 @@ THEN I am shown a 300x200 pixel image that matches the criteria I entered
 */
 
 const { default: inquirer } = require('inquirer');
-const logo = require('../../index');
+const logo = require('../index');
 
-//first test will be to ensure that the init function is prompting the user
+describe(``)
+//test will be to check the class constructor functions
 
-describe('init', () => {
-  it(`prompts the user for text and returns the input`, () => {
-
-  })
-})
-//Next tests will be seeing if the return of the prompt is creating a new object sequentially {text: 'userI', textColor: 'userI', shape: 'circle', shapeColor: 'black'}
