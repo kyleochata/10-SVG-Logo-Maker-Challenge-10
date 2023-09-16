@@ -4,44 +4,53 @@ in this logo fxn.js:
 will need to have all the functions needed to generate a svg logo
 */
 const colorArr = require('./color-key'); // make another color.js with just an arr that has every color keyword
-const hexArr = requires('./hex-key');
+const hexArr = require('./hex-key');
 //create class Shape
 class Shape {
   constructor (text, textColor, shape, shapeColor) {
 
     if(text.length <= 3){
-      this.text = text;
+      return this.text = text;
     } else {
-      throw new Error(`You may only input 3 characters or less for your logo. Please try again.`);
+      console.log(`You may only input 3 characters or less for your logo. Please try again.`);
     };
   let tColor = textColor.toLowerCase().trim();
     if (tColor === '') {
-      throw new Error(`You must enter a valid color. Please try again.`)
+      console.log(`You must enter a valid color. Please try again.`)
     } else {
       if(tColor[0] === `#` && tColor.length === 7) {
-        if (tColor.includes(hexArr)) {
-          this.textColor = tColor;
+        if (hexArr.includes(tColor)) {
+          return this.textColor = tColor;
         } else {
-          throw new Error(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
+          console.log(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
         }
       }
-      if (tColor.includes(colorArr)) {
-        this.textColor = tColor;
+      if (colorArr.includes(tColor)) {
+        return this.textColor = tColor;
       } else {
-        throw new Error(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
+        console.log(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
       }
     };
 
     this.shape = shape;
 
   let sColor = shapeColor.toLowerCase().trim();
-    if (sColor === '') {
-      throw new Error(`You must enter a valid color. Please try again.`);
-    } else if (sColor[0] !== '#' || sColor.length !== 7 || sColor.length !== 4) {
-      throw new Error(`Please check your hexadecimal color and try again. Acceptable criteria are: #{xxx} or #{xxxxxx}. 3 or 6 variables after the #.`);
+  if (sColor === '') {
+    console.log(`You must enter a valid color. Please try again.`)
+  } else {
+    if(sColor[0] === `#` && sColor.length === 7) {
+      if (hexArr.includes(sColor)) {
+        return this.textColor = sColor;
+      } else {
+        console.log(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
+      }
+    }
+    if (colorArr.includes(sColor)) {
+      return this.textColor = sColor;
     } else {
-      this.shapeColor = sColor;
-    };
+      console.log(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
+    }
+  };
 
     this.svgOpenTag = `<svg version="1.1"
     width="300" height="200"
@@ -53,25 +62,60 @@ class Shape {
 //create class Circle that will inherit shape
 class Circle extends Shape {
   constructor(text, textColor, circle, shapeColor) {
-    super(text, textColor, shapeColor);
-    this.shape = circle;
+    super(text, textColor, circle, shapeColor);
+  }
+  render() {
+    return `
+    ${this.svgOpenTag}
+    <${this.shape} cs='150' cy='100' r='100' fill='${this.shapeColor}' />
+    ${this.elementTextTag}
+    ${this.svgCloseTag}`
   }
 }
+
 //create class triangle that will inherit shape
 class Triangle extends Shape {
   constructor(text, textColor, triangle, shapeColor) {
-    super(text, textColor, shapeColor);
-    this.shape = triangle;
+    super(text, textColor, triangle, shapeColor);
+  }
+  render() {
+    return `
+    ${this.svgOpenTag}
+    <polygon points='100, 15 200, 200 0, 200'  fill='${this.shapeColor}' />
+    ${this.elementTextTag}
+    ${this.svgCloseTag}`
   }
 }
 //create class square that will inherit shape
 class Square extends Shape {
   constructor(text, textColor, square, shapeColor) {
-    super(text, textColor, shapeColor);
-    this.shape = square;
+    super(text, textColor, square, shapeColor);
+  }
+  render() {
+    return `
+    ${this.svgOpenTag}
+    <rect  width='200' height='200' fill='${this.shapeColor}' />
+    ${this.elementTextTag}
+    ${this.svgCloseTag}`
   }
 }
 
 //function that will take inquirer data and return a <svg> with user input variables from inquirer to then be sent into a writeFile function on the index
-const test = new Shape ('SVG', 'green', 'circle', 'black');
-console.log(test);
+const makeLogo = (response) => {
+  const { text, textColor, shape, shapeColor  } = response;
+
+  if (shape === `circle`) {
+    const newCircle = new Circle(text, textColor, shape, shapeColor );
+    return newCircle.render();
+  }
+  if (shape === `triangle`) {
+    const newTriangle = new Triangle(text, textColor, shape, shapeColor);
+    return newTriangle.render();
+  }
+  if (shape === `square`) {
+    const newSquare = new Square(text, textColor, shape, shapeColor);
+    return newSquare.render();
+  }
+}
+
+module.exports = makeLogo;

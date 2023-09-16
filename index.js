@@ -13,8 +13,8 @@ need fs to writetofile named 'logo.svg'
 */
 const inquirer = require('inquirer');
 const fs = require('fs');
-const logoFxn = require('./assets/utilities/logo-fxn');
-
+const makeLogo = require('./library/shapes')
+const filePnN = `./examples/logo.svg`;
 const questions = [
   {
     type: `input`,
@@ -46,13 +46,18 @@ const questions = [
 ];
 
 //create a function to write a logo.svg file
-
+const createLogo = (response) => {
+  const handleResponse = makeLogo(response);
+  fs.writeFile(filePnN, handleResponse, () => {
+    console.log(`logo.svg created! Check it out in the "examples" folder`)
+  })
+}
 //create a function initialize the app
 function init() {
   inquirer
     .prompt(questions)
     .then((answers) => {
-
+      createLogo(answers)
     })
     .catch(err => {
       throw new Error(err);
