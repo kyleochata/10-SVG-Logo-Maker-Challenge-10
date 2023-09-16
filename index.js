@@ -23,7 +23,7 @@ const questions = [
 },
 {
   type:`input`,
-  message:`Please choose what color your text will be. Name of the color or hexadecimal numbers in the format of #{xxxxxx} are acceptable.`,
+  message:`Please choose what color your text will be. Name of the color or hexadecimal numbers in the format of #{xxxxxx} are acceptable. Include the '#' if using hexadecimal`,
   name: `textColor`,
   default: `green`,
 },
@@ -39,7 +39,7 @@ const questions = [
 },
 {
   type: `input`,
-  message: `What color would you like your shape to be? Name of the color or hexadecimal numbers in the format of #{xxxxxx} are acceptable.`,
+  message: `What color would you like your shape to be? Name of the color or hexadecimal numbers in the format of #{xxxxxx} are acceptable. Include the '#' if using hexadecimal`,
   name: `shapeColor`,
   default: `black`,
 },
@@ -55,10 +55,10 @@ const writeFileFxn = (handledR) => {
     console.log(`Please check the text color you have chosen matches the W3Schools CSS colors page and try again.`);
     return;
   } else if (shapeColor === undefined) {
-    console.log(`Please check the text color you have chosen matches the W3Schools CSS colors page and try again.`);
+    console.log(`Please check the shape color you have chosen matches the W3Schools CSS colors page and try again.`);
     return;
   } else {
-    const render = handledR.render()
+    const render = handledR.render();
     fs.writeFile(filePnN, render, () => {
       console.log(`logo.svg created! Check it out in the "examples" folder`)
     })
