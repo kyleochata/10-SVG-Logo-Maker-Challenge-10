@@ -3,6 +3,8 @@ in this logo fxn.js:
 
 will need to have all the functions needed to generate a svg logo
 */
+const colorArr = require('./color-key'); // make another color.js with just an arr that has every color keyword
+const hexArr = requires('./hex-key');
 //create class Shape
 class Shape {
   constructor (text, textColor, shape, shapeColor) {
@@ -12,24 +14,33 @@ class Shape {
     } else {
       throw new Error(`You may only input 3 characters or less for your logo. Please try again.`);
     };
-let tColor = textColor.toLowerCase().trim();
-
-  if (tColor === '') {
-      throw new Error(`You must enter a valid color. Please try again.`);
-    } else if (tColor[0] !== '#' || tColor.length !== 7 || tColor.length !== 4) {
-      throw new Error(`Please check your hexadecimal color and try again. Acceptable criteria are: #{xxx} or #{xxxxxx}. 3 or 6 variables after the #.`);
+  let tColor = textColor.toLowerCase().trim();
+    if (tColor === '') {
+      throw new Error(`You must enter a valid color. Please try again.`)
     } else {
-      this.textColor = tColor;
-    }
+      if(tColor[0] === `#` && tColor.length === 7) {
+        if (tColor.includes(hexArr)) {
+          this.textColor = tColor;
+        } else {
+          throw new Error(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
+        }
+      }
+      if (tColor.includes(colorArr)) {
+        this.textColor = tColor;
+      } else {
+        throw new Error(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
+      }
+    };
 
     this.shape = shape;
 
-    if (shapeColor === '') {
+  let sColor = shapeColor.toLowerCase().trim();
+    if (sColor === '') {
       throw new Error(`You must enter a valid color. Please try again.`);
-    } else if (shapeColor[0] !== '#' || shapeColor.length !== 7 || shapeColor.length !== 4) {
+    } else if (sColor[0] !== '#' || sColor.length !== 7 || sColor.length !== 4) {
       throw new Error(`Please check your hexadecimal color and try again. Acceptable criteria are: #{xxx} or #{xxxxxx}. 3 or 6 variables after the #.`);
     } else {
-      this.shapeColor = shapeColor;
+      this.shapeColor = sColor;
     };
 
     this.svgOpenTag = `<svg version="1.1"
@@ -50,14 +61,14 @@ class Circle extends Shape {
 class Triangle extends Shape {
   constructor(text, textColor, triangle, shapeColor) {
     super(text, textColor, shapeColor);
-    this.shape = triangle
+    this.shape = triangle;
   }
 }
 //create class square that will inherit shape
 class Square extends Shape {
   constructor(text, textColor, square, shapeColor) {
     super(text, textColor, shapeColor);
-    this.shape = square
+    this.shape = square;
   }
 }
 
