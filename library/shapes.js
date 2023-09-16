@@ -1,10 +1,7 @@
-/*
-in this logo fxn.js:
-
-will need to have all the functions needed to generate a svg logo
-*/
-const colorArr = require('./color-key'); // make another color.js with just an arr that has every color keyword
+//import dependent js files
+const colorArr = require('./color-key'); 
 const hexArr = require('./hex-key');
+
 //create class Shape
 class Shape {
   constructor (text, textColor, shape, shapeColor) {
@@ -132,6 +129,6 @@ const makeLogo = (response) => {
   }
 }
 
+//export classes and makeLogo fxn
 module.exports = { makeLogo, Shape, Circle, Triangle, Square };
-
 
