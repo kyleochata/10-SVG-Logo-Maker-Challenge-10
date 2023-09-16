@@ -10,51 +10,49 @@ class Shape {
   constructor (text, textColor, shape, shapeColor) {
 
     //set text if text input is less than 3 char
-    if(text.length <= 3 || text === ''){
+    if(text.length <= 3){
       this.text = text;
     } else {
-      this.text = undefined;
+      console.log(`You may only input 3 characters or less for your logo. Please try again.`);
     };
 
     //handle and set textColor
-  let tKeyColor = textColor.toLowerCase().trim();
-  let tHexColor = textColor.toUpperCase().trim();
-    if (textColor === '') {
+  let tColor = textColor.toLowerCase().trim();
+    if (tColor === '') {
       console.log(`You must enter a valid color. Please try again.`)
     } else {
-      if(tHexColor[0] === `#` && tHexColor.length === 7) {
-        if (hexArr.includes(tHexColor)) {
-          this.textColor = tHexColor;
+      if(tColor[0] === `#` && tColor.length === 7) {
+        if (hexArr.includes(tColor)) {
+          this.textColor = tColor;
         } else {
-          this.textColor = undefined;
+          console.log(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
         }
       }
-      if (colorArr.includes(tKeyColor)) {
-        this.textColor = tKeyColor;
+      if (colorArr.includes(tColor)) {
+        this.textColor = tColor;
       } else {
-        this.textColor = undefined;
+        console.log(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
       }
     };
     //set shape property
     this.shape = shape;
 
 //handle and set shapeColor based on user input
-  let sHexColor = shapeColor.toUpperCase().trim();
-  let sKeyColor = shapeColor.toLowerCase().trim();
-  if (shapeColor === '') {
+  let sColor = shapeColor.toLowerCase().trim();
+  if (sColor === '') {
     console.log(`You must enter a valid color. Please try again.`)
   } else {
-    if(sHexColor[0] === `#` && sHexColor.length === 7) {
-      if (hexArr.includes(sHexColor)) {
-        this.shapeColor = sHexColor;
+    if(sColor[0] === `#` && sColor.length === 7) {
+      if (hexArr.includes(sColor)) {
+        this.shapeColor = sColor;
       } else {
-        this.shapeColor = undefined;
+        console.log(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
       }
     }
-    if (colorArr.includes(sKeyColor)) {
-      this.shapeColor = sKeyColor;
+    if (colorArr.includes(sColor)) {
+      this.shapeColor = sColor;
     } else {
-      this.shapeColor = undefined;
+      console.log(`Please visit W3Schools CSS Color page and pick from one of the colors available.`);
     }
   };
 //create props with constant values needed for all shapes in rendering the svg file
@@ -72,7 +70,7 @@ class Circle extends Shape {
     return `
     ${this.svgOpenTag}
 
-    <${this.shape} cx="150" cy="110" r="80" fill="${this.shapeColor}" />
+    <${this.shape} cs="150" cy="100" r="80" fill="${this.shapeColor}" />
 
     ${this.elementTextTag}
 
@@ -89,7 +87,7 @@ class Triangle extends Shape {
     return `
     ${this.svgOpenTag}
 
-    <polygon points="150, 15 300, 175 15, 175"  fill="${this.shapeColor}" />
+    <polygon points="100, 15 200, 200 0, 200"  fill="${this.shapeColor}" />
 
     ${this.elementTextTag}
 
@@ -107,7 +105,7 @@ class Square extends Shape {
 
     <rect  width="200" height="200" fill="${this.shapeColor}" />
   
-    <text x="150" y="115" font-size="60" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
+    ${this.elementTextTag}
 
     ${this.svgCloseTag}`
   }
@@ -119,15 +117,15 @@ const makeLogo = (response) => {
 
   if (shape === `circle`) {
     const newCircle = new Circle(text, textColor, shape, shapeColor );
-    return newCircle;
+    return newCircle.render();
   }
   if (shape === `triangle`) {
     const newTriangle = new Triangle(text, textColor, shape, shapeColor);
-    return newTriangle;
+    return newTriangle.render();
   }
   if (shape === `square`) {
     const newSquare = new Square(text, textColor, shape, shapeColor);
-    return newSquare;
+    return newSquare.render();
   }
 }
 
