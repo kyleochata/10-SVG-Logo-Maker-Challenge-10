@@ -10,7 +10,7 @@ class Shape {
   constructor (text, textColor, shape, shapeColor) {
 
     //set text if text input is less than 3 char
-    if(text.length <= 3 || text === ''){
+    if(text.length <= 3 && text !== ''){
       this.text = text;
     } else {
       this.text = undefined;
@@ -20,7 +20,7 @@ class Shape {
   let tKeyColor = textColor.toLowerCase().trim();
   let tHexColor = textColor.toUpperCase().trim();
     if (textColor === '') {
-      console.log(`You must enter a valid color. Please try again.`)
+      console.log(`You must enter a valid color. Please try again.`);
     } else {
       if(tHexColor[0] === `#` && tHexColor.length === 7) {
         if (hexArr.includes(tHexColor)) {
@@ -29,7 +29,7 @@ class Shape {
           this.textColor = undefined;
         }
       }
-      if (colorArr.includes(tKeyColor)) {
+      else if (colorArr.includes(tKeyColor)) {
         this.textColor = tKeyColor;
       } else {
         this.textColor = undefined;
@@ -44,6 +44,7 @@ class Shape {
   if (shapeColor === '') {
     console.log(`You must enter a valid color. Please try again.`)
   } else {
+    //checks to see if user
     if(sHexColor[0] === `#` && sHexColor.length === 7) {
       if (hexArr.includes(sHexColor)) {
         this.shapeColor = sHexColor;
@@ -51,7 +52,7 @@ class Shape {
         this.shapeColor = undefined;
       }
     }
-    if (colorArr.includes(sKeyColor)) {
+    else if (colorArr.includes(sKeyColor)) {
       this.shapeColor = sKeyColor;
     } else {
       this.shapeColor = undefined;
@@ -105,7 +106,7 @@ class Square extends Shape {
     return `
     ${this.svgOpenTag}
 
-    <rect  width="200" height="200" fill="${this.shapeColor}" />
+    <rect  x="45" width="200" height="200" fill="${this.shapeColor}" />
   
     <text x="150" y="115" font-size="60" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
 
