@@ -87,8 +87,7 @@ class Triangle extends Shape {
     super(text, textColor, triangle, shapeColor);
   }
   render() {
-    return `
-    ${this.svgOpenTag}
+    return `${this.svgOpenTag}
 
     <polygon points="150, 15 300, 175 15, 175"  fill="${this.shapeColor}" />
 
@@ -134,3 +133,7 @@ const makeLogo = (response) => {
 
 
 module.exports = makeLogo;
+module.exports = Shape;
+module.exports = Circle;
+module.exports = Triangle;
+module.exports = Square;
