@@ -60,7 +60,7 @@ const writeFileFxn = (handledR) => {
   } else {
     const render = handledR.render();
     fs.writeFile(filePnN, render, () => {
-      console.log(`logo.svg created! Check it out in the "examples" folder`)
+      console.log(`Generated logo.svg! Check it out in the "examples" folder`)
     })
   }
 }
