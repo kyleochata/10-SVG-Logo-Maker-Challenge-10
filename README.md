@@ -38,7 +38,7 @@ Square:
 Locate a suitable place where you would like to download this repository. Once found, copy the repositories SSH or HTTPS to clone through the terminal or download the zipfile from GitHub. After it is downloaded, please ensure that node.js is installed. Once it is installed and at least version 18 or higher, go to your terminal, navigate to the directory that contains this repository. Once there, type in "node index" to create your logo.svg file. It will appear in the folder named: examples.
 
 ## Demo
-Please see the demo of this project [here](https://drive.google.com/file/d/1tgScFvfEV-L8_9kxNjDczvmi8Y41HztI/view)
+Please see the demo of this project [here](https://drive.google.com/file/d/1SROuWvqwZ374jj-ITp4eatJGiqkqP1Lx/view)
 
 ## Usage
 This repository is allowed for use in a learning environment to evaluate and analyze.
